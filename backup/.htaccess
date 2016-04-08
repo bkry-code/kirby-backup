@@ -1,0 +1,45 @@
+#################################################################################################
+
+# Protect this .htaccess file
+
+<files .htaccess>
+  order allow,deny
+  deny from all
+</files>
+
+#################################################################################################
+
+# Directory browsing disabled
+
+Options All -Indexes
+
+#################################################################################################
+
+# If your domainname is : www.yourdomain.com, set the hot-linking prevention below to :
+
+# ...
+# RewriteCond %{HTTP_REFERER} !.*yourdomain.com.* [OR]
+# ...
+# RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?yourdomain.com [NC]
+# RewriteRule \.(zip|php)$ http://yourdomain.com [NC,R,L]
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+# Prevent downloads, requested without a valid referer
+
+RewriteCond %{REQUEST_URI} \.(zip|php)*
+RewriteCond %{HTTP_REFERER} !.*localhost.* [OR]
+RewriteCond %{HTTP_USER_AGENT} ^$
+RewriteRule (.*) http://%{REMOTE_ADDR}/$ [R=301,L]
+
+# Only accepts referers from the same server
+
+# RewriteCond %{HTTP_REFERER} !^$
+# RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?localhost [NC]
+# RewriteRule \.(zip|php)$ localhost [NC,R,L]
+
+</IfModule>
+
+#################################################################################################

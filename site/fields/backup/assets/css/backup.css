@@ -1,0 +1,83 @@
+a#createBackup i,
+a#creatingBackup i {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+a#createBackup,
+a#creatingBackup {
+  display : none;
+  background: #fff;
+  color: #000;
+}
+
+a#creatingBackup {
+  background: #999;
+  border-color: #999;
+  color: #eee;
+  cursor: not-allowed;
+  display: none;
+}
+
+a#createBackup:hover {
+  background: #000;
+  color: #fff;
+}
+
+a#createBackup.btn-show,
+a#creatingBackup.btn-show {
+  display : inline-block;
+}
+
+div#backupStatus ul {
+  margin: 20px 0 25px 20px;
+}
+
+div#backupStatus ul li {
+  margin: 15px 0
+}
+
+div#backupStatus a,
+div#backupList a {
+  border-bottom: 2px solid #bbb;
+}
+
+div#backupStatus a:hover,
+div#backupList a:hover
+ {
+  border-bottom-color: #000;
+}
+
+a#deleteBackup {
+  cursor: pointer;
+}
+
+div#backupStatus span {
+  color: #888;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+/* list with files */
+
+div#backupList a {
+  display: inline-block;
+  cursor: pointer;
+  margin: 0 0 0 10px;
+  visibility: hidden;
+}
+
+div#backupList a.fileList {
+  visibility: visible;
+}
+
+div#backupList ul {
+  border-top: 2px solid #ddd;
+  display: none;
+  margin: 0;
+  padding: 20px 0 0 20px;
+}
+
+#backupList li {
+  padding: 2px 0;
+}
