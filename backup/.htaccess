@@ -2,16 +2,16 @@
 
 # Protect this .htaccess file
 
-<files .htaccess>
-  order allow,deny
-  deny from all
-</files>
+# <files .htaccess>
+#  order allow,deny
+#  deny from all
+# </files>
 
 #################################################################################################
 
 # Directory browsing disabled
 
-Options All -Indexes
+# Options All -Indexes
 
 #################################################################################################
 
