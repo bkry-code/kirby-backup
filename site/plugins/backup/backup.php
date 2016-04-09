@@ -1,7 +1,9 @@
 <?php
 
 if (!defined('KIRBY')) {
-  die();
+  //  die('no kirby here');
+  header("Location: /");
+  exit();
 }
 
 kirby()->routes(array(
@@ -49,7 +51,7 @@ kirby()->routes(array(
         else {
 
           if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            die('no post-request');
+            // die('no post-request');
             header("Location: /");
             exit();
           } else {
@@ -150,13 +152,13 @@ kirby()->routes(array(
 
                   $response1 = $response2 = null;
 
-                  $response1 = '<a href="../backup/' . $backupFile . '" title="download this backup">Download</a> this backup to your local device.';
-                  $response2 = 'Please, <a id="deleteBackup" class="clear-list" title="delete this backup">delete</a> this backup after download <span>(for security reasons)</span>.';
+                  $response1 = '<button type="button" onclick="location.href=\'../backup/' . $backupFile . '\';" title="download this backup">Download</button> this backup to your local device.';
+                  $response2 = 'Please, <button type="button" id="deleteBackup" class="clear-list" title="delete this backup">delete</button> this backup after download <span>(for security reasons)</span>.';
 
                   $response = 'Last backup created on : ' . date('F d, Y - H:i:s') . ' <span>(' . $sizeBackup . ')</span>.<br>';
                   $response .= '<ul><li>' . $response1 . '</li>';
                   $response .= '<li>' . $response2 . '</li></ul>';
-                  $response .= '<script>$("#backupList").html("<br><i class=\"fa fa-eye fileList\"></i> <a class=\"fileList\" title=\"show all the files in the backup\">show filelist</a><ul>' . $fileList . '</ul>");</script>';
+                  $response .= '<script>$("#backupList").html("<br><i class=\"fa fa-eye fileList\"></i> <button type=\"button\" class=\"fileList\" title=\"show all the files in the backup\">show filelist</button><ul>' . $fileList . '</ul>");</script>';
 
                   echo $response;
                   exit();
@@ -188,8 +190,8 @@ kirby()->routes(array(
                   $sizeBackup = backupSize(filesize($file));
                 }
 
-                $response1 = '<a href="' . $site->url() . '/' . $pathBackup . '" title="download this backup">Download</a> this backup to your local device.';
-                $response2 = 'Please, <a id="deleteBackup" class="clear-list" title="delete this backup">delete</a> this backup after download <span>(for security reasons)</span>.';
+                $response1 = '<button type="button" onclick="location.href=\'' . $site->url() . '/' . $pathBackup . '\';" title="download this backup">Download</button> this backup to your local device.';
+                $response2 = 'Please, <button type="button" id="deleteBackup" class="clear-list" title="delete this backup">delete</button> this backup after download <span>(for security reasons)</span>.';
 
                 if (empty($lastBackup)) {
                   $lastBackup = '<span>no backup found</span>';

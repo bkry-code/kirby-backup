@@ -1,11 +1,28 @@
-(function($)
-{
-  $(document).ready(function()
+//////////////////////////////////////////////////////////////////
+// EXTEND LOADER FUNCTION, FIRE BEFORE - AND AFTER
+//////////////////////////////////////////////////////////////////
+
+NProgress.done = (function()
   {
-    if(app && typeof app == 'object')
+var NProgressDone = NProgress.done;
+  return function()
     {
-      $(app.main).on('view:load', function()
-      {
+  var result = NProgressDone.apply(this, arguments);
+  setTimeout(function(){set_backup();},10);
+  return result;
+    };
+  }());
+
+//////////////////////////////////////////////////////////////////
+
+$(document).ready(function()
+  {
+set_backup();
+  });
+
+function set_backup()
+  {
+console.log('[backup] fired');
 
         $(document).on('click','.clear-list',function()
         {
@@ -13,7 +30,7 @@
           $('#backupList ul').hide();
         });
 
-       $(document).on('click','#backupList a',function()
+       $(document).on('click','#backupList button',function()
         {
           $('.fileList').css('visibility','hidden');
           $('#backupList ul').fadeIn();
@@ -70,7 +87,4 @@
 
         /* ---------------------------------------------- */
 
-      });
-    }
-  });
-})(jQuery);
+  }
